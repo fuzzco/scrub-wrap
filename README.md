@@ -1,20 +1,40 @@
-Boilerplate for Fuzzco Vue components.
+Get a section's scroll progress. Useful for animations like [this one](https://www.synack.com/red-team/) (scroll down to the "Do you have what it takes?" section), for example.
 
-`degit fuzzco/component-base your-new-component-directory`
+`npm i @fuzzco/scrub-wrap`
 
-## Development
+[Register component in Vue](https://vuejs.org/v2/guide/components-registration.html), then:
 
-`npm run dev`
+```html
+<template>
+    <main>
+        <!-- get scroll progress -->
+        <scrub-wrap @progress="progress = $event">
+            <div class="scroll-area" />
+        </scrub-wrap>
+    </main>
+</template>
 
-Runs [vue-cli-service serve](https://cli.vuejs.org/guide/cli-service.html#vue-cli-service-serve) at `demo/App.vue`. You can create a demo of the component in a Vue environment here.
+<script>
+    export default {
+        data() {
+            return {
+                progress: 0
+            }
+        }
+    }
+</script>
+```
 
-## Deployment
+## Options
 
-`npm run build`
+| Prop        | Type             | Default | Notes                                                                                                             |
+| ----------- | ---------------- | ------- | ----------------------------------------------------------------------------------------------------------------- |
+| `component` | String           | `div`   | Wrapper element.                                                                                                  |
+| `height`    | [Number, String] | -1      | Height of the wrapper in px. Useful for making the wrapper extend past the viewport, for example. `-1` to ignore. |
+| `top` }     | [Number, String] | -1      | Top of the internal content. `-1` to ignore.                                                                      |
 
-Runs [vue-cli-service build](https://cli.vuejs.org/guide/cli-service.html#vue-cli-service-build) in `library` mode.
+## Events
 
-**Note:** You'll need to:
-
-1. Replace `scrub-wrap` and `src/YourComponentFile.vue` in the `build` script with your component's library name and entry point
-1. Set `package.json`'s `main` to `dist/scrub-wrap.common.js` to enable importing in outside Vue apps.
+| Name       | Parameters        | Notes                                                                                                                                            |
+| ---------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `progress` | `(value: number)` | The percentage scrolled. 0 = 0% = the element's top is at the top of the screen, 1 = 100% = the element's bottom is at the bottom of the screen. |

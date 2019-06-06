@@ -25,7 +25,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@popmotion/popcorn": "^0.4.0",
         "imagesloaded": "^4.1.4",
+        "popmotion": "^8.6.10",
         "vue": "^2.6.10"
     }
 }
