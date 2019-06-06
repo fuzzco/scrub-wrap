@@ -1,6 +1,6 @@
 {
     "name": "@fuzzco/scrub-wrap",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "All-in-one image component for Vue.",
     "main": "dist/scrub-wrap.common.js",
     "scripts": {

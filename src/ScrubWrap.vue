@@ -25,6 +25,10 @@ export default {
             default: -1
         }
     },
+    async mounted() {
+        await this.$nextTick()
+        this.refresh()
+    },
     data() {
         return {
             scrubPosition: 0,
@@ -52,6 +56,14 @@ export default {
             requestAnimationFrame(() => {
                 const rect = this.$el.getBoundingClientRect()
             })
+        },
+        refresh() {
+            if (!this || !this.$el || !this.alive) return
+
+            // get start position
+            const scrubbableArea = this.$el.offsetHeight - window.innerHeight
+            const zeroedScrollPos = this.$el.getBoundingClientRect().top * -1
+            this.scrubPosition = zeroedScrollPos / scrubbableArea
         }
     },
     beforeDestroy() {
@@ -59,12 +71,7 @@ export default {
     },
     watch: {
         ssTop() {
-            if (!this || !this.$el || !this.alive) return
-
-            // get start position
-            const scrubbableArea = this.$el.offsetHeight - window.innerHeight
-            const zeroedScrollPos = this.$el.getBoundingClientRect().top * -1
-            this.scrubPosition = zeroedScrollPos / scrubbableArea
+            this.refresh()
         },
         scrubPosition(newVal) {
             this.$emit('progress', newVal)
