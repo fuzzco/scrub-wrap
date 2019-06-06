@@ -1,4 +1,4 @@
-Get a section's scroll progress. Useful for animations like [this one](https://www.synack.com/red-team/) (scroll down to the "Do you have what it takes?" section), for example.
+Get a section's scroll progress. Useful for animations like [this one](https://www.synack.com/red-team/) (scroll down to the "Do you have what it takes?" section), for example. [Demo](https://fuzzco.github.io/scrub-wrap/)
 
 `npm i @fuzzco/scrub-wrap`
 
